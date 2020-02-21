@@ -3,25 +3,39 @@
 
 class GuestBook
 {
-    private $json = "guestentry.json";
-    //private $guestArr = [];
-    private $title;
-    private $date;
-    private $content;
-    private $name;
-    private $jsonData;
+    public $allPosts =[];
 
-    public function get_entries()
+    public function readData()
     {
-        $this->title = $_POST['title'];
-        $this->date = date('d/m/Y');
-        $this->content = $_POST['content'];
-        $this->name = $_POST['name'];
-
-        //array_push($this->guestArr, $this->title, $this->date, $this->content, $this->name);
-        $guestArray = ['Title' => $this->title, 'Date' => $this->date, 'Content' => $this->content, 'Name' => $this->name];
-        $this->jsonData = file_put_contents($this->json, json_encode($guestArray), LOCK_EX);
+        // put json into allposts
+        $temparr = json_decode(file_get_contents("guestentry.json"), true);
+        foreach ($temparr as $item){
+            $temp = new Post($item['Title'], $item['Date'], $item['Content'], $item['Name']);
+            array_push($this->allPosts, $temp);
+        }
     }
+
+    public function writeData($tempTitle, $tempDate, $tempContent, $tempName)
+    {
+        //write $allposts to the json
+        array_push($this->allPosts, $tempTitle, $tempDate, $tempContent, $tempName);
+        $this->allPosts = file_put_contents("guestentry.json", json_encode($this->allPosts), LOCK_EX);
+    }
+
+    public function displayData()
+    {
+        foreach ($this->allPosts as $post) {
+            echo $post->showPost();
+        }
+    }
+
+/*    public function print_data(Post $tempPost){
+        implode(",", $tempPost->dataToArr());
+        echo $tempPost->dataToArr();
+    }*/
+
+
+
 
 /*    public function infoToAssociativeArray() {
         $array = explode(',', $string);

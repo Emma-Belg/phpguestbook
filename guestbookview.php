@@ -10,7 +10,7 @@
           rel="stylesheet"/>
 
     <title>Guest Book</title>
-    
+
 </head>
 <body>
 <section class="px-2">
@@ -55,9 +55,20 @@
                 </div>
                 <p>
                     <?php
-                    $testentry = new GuestBook();
+                    //here perhaps read the json and display it on the page
+/*                    $testentry = new Post();
                     $testentry->get_entries();
-                    $testentry->entryToJson();
+                    $testentry->arrayInArray();*/
+
+                    //those two should move to guestbook
+                    // listen to the post of the page and add it to all the posts in the guestbook
+                    // then save to the json
+
+                    $entry = new GuestBook();
+                    $entry->readData();
+                    $entry->displayData();
+                    $entry->writeData($_POST['title'], date(d/m/Y), $_POST['content'], $_POST['name']);
+
                     ?></p>
                 <button name = "send" type="submit" class="btn btn-primary mx-2">Add My Entry</button>
             </div>
