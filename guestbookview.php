@@ -56,6 +56,8 @@
                 <p>
                     <?php
                     //here perhaps read the json and display it on the page
+
+
 /*                    $testentry = new Post();
                     $testentry->get_entries();
                     $testentry->arrayInArray();*/
@@ -67,7 +69,7 @@
                     $entry = new GuestBook();
                     $entry->readData();
                     $entry->displayData();
-                    $entry->writeData($_POST['title'], date(d/m/Y), $_POST['content'], $_POST['name']);
+                    $entry->writeData($_POST['title']);
 
                     ?></p>
                 <button name = "send" type="submit" class="btn btn-primary mx-2">Add My Entry</button>

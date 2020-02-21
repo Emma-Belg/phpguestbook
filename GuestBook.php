@@ -15,10 +15,10 @@ class GuestBook
         }
     }
 
-    public function writeData($tempTitle, $tempDate, $tempContent, $tempName)
+    public function writeData(Post $tempPost)
     {
         //write $allposts to the json
-        array_push($this->allPosts, $tempTitle, $tempDate, $tempContent, $tempName);
+        array_push($this->allPosts, $tempPost);
         $this->allPosts = file_put_contents("guestentry.json", json_encode($this->allPosts), LOCK_EX);
     }
 
