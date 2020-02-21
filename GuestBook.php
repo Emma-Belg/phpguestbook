@@ -9,8 +9,9 @@ class GuestBook
     {
         // put json into allposts
         $temparr = json_decode(file_get_contents("guestentry.json"), true);
+        var_dump($temparr);
         foreach ($temparr as $item){
-            $temp = new Post($item['Title'], $item['Date'], $item['Content'], $item['Name']);
+            $temp = new Post($item['title'], $item['date'], $item['content'], $item['name']);
             array_push($this->allPosts, $temp);
         }
     }

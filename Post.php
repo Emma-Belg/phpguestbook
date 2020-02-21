@@ -13,6 +13,8 @@ class Post
     private $emptyArr = [];
     private $dataArr = [];
 
+    //write a function to post the private variables so that they can be accessed and posted to the json, this is the reason that the json file collects empty stuff currently but you can see it while it is being debugged
+
     public function __construct($title, $date, $content, $name)
     {
         $this->title = $title;

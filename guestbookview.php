@@ -65,11 +65,17 @@
                     //those two should move to guestbook
                     // listen to the post of the page and add it to all the posts in the guestbook
                     // then save to the json
+                    if (!empty($_POST['title'])){
+                        $newPost = new Post($_POST['title'], date("d/m/Y"), $_POST['content'], $_POST['name']);
+
+
+
 
                     $entry = new GuestBook();
                     $entry->readData();
                     $entry->displayData();
-                    $entry->writeData($_POST['title']);
+                    $entry->writeData($newPost);
+                    }
 
                     ?></p>
                 <button name = "send" type="submit" class="btn btn-primary mx-2">Add My Entry</button>
