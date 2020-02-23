@@ -67,14 +67,16 @@
                     // then save to the json
                     if (!empty($_POST['title'])){
                         $newPost = new Post($_POST['title'], date("d/m/Y"), $_POST['content'], $_POST['name']);
-
-
+                        $newPost->get_entries();
+                        $newPost->showPost();
 
 
                     $entry = new GuestBook();
                     $entry->readData();
                     $entry->displayData();
                     $entry->writeData($newPost);
+                    $entry-> getPosts();
+
                     }
 
                     ?></p>
